@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vamos se ver hoje?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffd1dc, #ffb6c1, #ffe6f2);
+      background-size: 300% 300%;
+      animation: gradientMove 8s ease infinite;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      color: #ff4da6;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .buttons {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    button {
+      font-size: 1.2em;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    #sim {
+      background-color: #ff66b2;
+      color: white;
+    }
+
+    #sim:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ffb6c1;
+    }
+
+    #nao {
+      background-color: #d9d9d9;
+      color: #666;
+      position: relative;
+    }
+
+    #resposta {
+      margin-top: 40px;
+      font-size: 1.8em;
+      color: #ff1493;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff80bf;
+      animation: float 6s linear infinite;
+      font-size: 24px;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      20% { opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Vamos se ver hoje? 💖</h1>
+  <div class="buttons">
+    <button id="sim" onclick="responderSim()">Sim 💕</button>
+    <button id="nao" onmouseover="fugir()">Não 💔</button>
+  </div>
+  <p id="resposta">vai gerar lindinha 💕</p>
+
+  <script>
+    const resposta = document.getElementById("resposta");
+    const botaoNao = document.getElementById("nao");
+
+    function responderSim() {
+      resposta.style.opacity = 1;
+      criarCoracoes();
+
+      // Substitua o número abaixo pelo SEU WhatsApp (com DDI + DDD)
+      const numero = "+5585991207190"; // exemplo: 55 + DDD + número
+      const mensagem = encodeURIComponent("é claro q eu aceitokkkkk 💕");
+      const link = `https://wa.me/${numero}?text=${mensagem}`;
+      
+      // Abre o WhatsApp
+      window.open(link, "_blank");
+    }
+
+    function fugir() {
+      const largura = window.innerWidth - botaoNao.offsetWidth;
+      const altura = window.innerHeight - botaoNao.offsetHeight;
+      const novoX = Math.random() * largura;
+      const novoY = Math.random() * altura;
+
+      botaoNao.style.position = "absolute";
+      botaoNao.style.left = `${novoX}px`;
+      botaoNao.style.top = `${novoY}px`;
+    }
+
+    function criarCoracoes() {
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }
+    }
+  </script>
+</body>
+</html>
