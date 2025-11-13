@@ -101,7 +101,7 @@
   <h1>Vamos se ver hoje? 💖</h1>
   <div class="buttons">
     <button id="sim" onclick="responderSim()">Sim 💕</button>
-    <button id="nao" onmouseover="fugir()">Não 💔</button>
+    <button id="nao" onmouseover="fugir()" onclick="fugir()">Não 💔</button>
   </div>
   <p id="resposta">vai gerar lindinha 💕</p>
 
@@ -113,12 +113,10 @@
       resposta.style.opacity = 1;
       criarCoracoes();
 
-      // Substitua o número abaixo pelo SEU WhatsApp (com DDI + DDD)
-      const numero = "+5585991207190"; // exemplo: 55 + DDD + número
+      const numero = "+5585991207190"; // Seu número de WhatsApp
       const mensagem = encodeURIComponent("é claro q eu aceitokkkkk 💕");
       const link = `https://wa.me/${numero}?text=${mensagem}`;
       
-      // Abre o WhatsApp
       window.open(link, "_blank");
     }
 
